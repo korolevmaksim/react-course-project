@@ -29,7 +29,12 @@ store.dispatch(setTextFilter('bill'));
 
 setTimeout(() => {
     store.dispatch(setTextFilter('rent'));
-}, 3000);
+    store.dispatch(addExpense({
+        description: 'Rent',
+        amount: 500,
+        createdAt: 3000
+    }));
+}, 5000);
 
 
 const state = store.getState();
