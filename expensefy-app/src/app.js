@@ -6,6 +6,7 @@ import configureStore from './store/configureStore';
 import { addExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
+import uuid from 'uuid';
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -13,33 +14,30 @@ import './styles/styles.scss';
 const store = configureStore();
 
 store.dispatch(addExpense({
+    id: uuid(),
     description: 'Water bill',
     amount: 100,
-    createdAt: 1000
+    createdAt: 4000
 }));
 
 store.dispatch(addExpense({
+    id: uuid(),
     description: 'Gas bill',
     amount: 200,
     createdAt: 2000
 }));
 
+store.dispatch(addExpense({
+    id: uuid(),
+    description: 'Rent',
+    amount: 500,
+    createdAt: 3000
+}));
 
-store.dispatch(setTextFilter('bill'));
-
-setTimeout(() => {
-    store.dispatch(setTextFilter('rent'));
-    store.dispatch(addExpense({
-        description: 'Rent',
-        amount: 500,
-        createdAt: 3000
-    }));
-}, 5000);
 
 
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-console.log(visibleExpenses);
 
 const jsx = (
     <Provider store={store}>
