@@ -7,18 +7,15 @@ const ExpenseListFilters = (props) => (
     <div>
         <input type="text" value={props.filters.text} onChange={(e) => {
             props.dispatch(setTextFilter(e.target.value));
-            console.log(e.target.value);
         }}/>
         <select
             value={props.filters.sortBy}
             onChange={(e) => {
             switch (e.target.value){
                 case 'date':
-                    console.log(e.target.value);
                     props.dispatch(sortByDate());
                     break;
                 case 'amount':
-                    console.log(e.target.value);
                     props.dispatch(sortByAmount());
                     break;
                 default:
