@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
+import selectExpensesTotal from '../selectors/expenses-total';
+import numeral from 'numeral';
 
 export const ExpenseList = (props) => (
     <div>
@@ -11,8 +13,10 @@ export const ExpenseList = (props) => (
                 <ExpenseListItem key={expense.id} {...expense}/>
             );
         })}
+        <br/>
     </div>
 );
+
 
 
 const mapStateToProps = (state) => {
